@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="lamp-post-off.png" width="360" height="720" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="lamp-post-on.png" width="360" height="720" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <folder id="1">
+        <file id="0" name="/lamp-post-off.png" width="360" height="720" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="/lamp-post-on.png" width="360" height="720" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="/light-post.png" width="131" height="359" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="/light-post-halo.png" width="200" height="200" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="/electrified-1.png" width="68" height="68" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="/electrified-2.png" width="68" height="68" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="electric_light">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="light-post" folder="1" file="2" abs_x="-140" abs_y="680" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="2" abs_scale_y="2" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="light-post">
+                <key id="0" spin="0">
+                    <object folder="1" file="2" x="-140" y="680" scale_x="2" scale_y="2"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="grow" length="1000" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="light-post" folder="1" file="2" abs_x="-3.075528" abs_y="-2.130219" abs_pivot_x="0.522612" abs_pivot_y="0.049958" abs_angle="360" abs_scale_x="1.317589" abs_scale_y="2" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="343">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="999">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="light-post">
+                <key id="0" spin="0">
+                    <object folder="1" file="2" x="-3.075528" y="-2.130219" pivot_x="0.522612" pivot_y="0.049958" scale_x="1.317589" scale_y="2"/>
+                </key>
+                <key id="1" time="343" spin="0">
+                    <object folder="1" file="2" x="-3.075528" y="-2.130219" pivot_x="0.522612" pivot_y="0.049958" scale_x="2.6" scale_y="1.5"/>
+                </key>
+                <key id="2" time="999" spin="0">
+                    <object folder="1" file="2" x="-3.075528" y="-2.130219" pivot_x="0.522612" pivot_y="0.049958" scale_x="2" scale_y="2"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_on" length="50000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="light-post" folder="1" file="2" abs_x="-140" abs_y="680" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="2" abs_scale_y="2" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="light-post-halo" folder="1" file="3" abs_x="-6.06412" abs_y="524.241517" abs_pivot_x="0.503514" abs_pivot_y="0.500907" abs_angle="360" abs_scale_x="2" abs_scale_y="2" abs_a="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="24996">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="light-post">
+                <key id="0" spin="0">
+                    <object folder="1" file="2" x="-140" y="680" scale_x="2" scale_y="2"/>
+                </key>
+                <key id="1" time="24996" spin="0">
+                    <object folder="1" file="2" x="-140" y="680" scale_x="2" scale_y="2"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="light-post-halo">
+                <key id="0" spin="0">
+                    <object folder="1" file="3" x="-6.06412" y="524.241517" pivot_x="0.503514" pivot_y="0.500907" scale_x="2" scale_y="2"/>
+                </key>
+                <key id="1" time="24996" spin="0">
+                    <object folder="1" file="3" x="-6.06412" y="524.241517" pivot_x="0.503514" pivot_y="0.500907" scale_x="1.5" scale_y="1.5"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

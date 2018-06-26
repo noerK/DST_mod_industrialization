@@ -182,7 +182,7 @@ local function OnEnableHelper(inst, enabled)
             inst.helper.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
             inst.helper.AnimState:SetLayer(LAYER_BACKGROUND)
             inst.helper.AnimState:SetSortOrder(1)
-            inst.helper.AnimState:SetAddColour(0, .2, .5, 0)
+            inst.helper.AnimState:SetAddColour(1, 1, 0, 0)
 
             inst.helper.entity:SetParent(inst.entity)
         end

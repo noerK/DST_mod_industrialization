@@ -2,13 +2,9 @@ require "prefabutil"
 
 local assets =
 {
-    Asset("ANIM", "anim/bulb_plant_single.zip"),
+    Asset("ANIM", "anim/electric_light.zip"),
 }
 
-local prefabs =
-{
-    "bulb",
-}
 
 local function onUpdateLight(inst)
 
@@ -16,12 +12,12 @@ local function onUpdateLight(inst)
         inst.Light:SetRadius(0)
         inst.Light:SetIntensity(0)
         inst.Light:SetFalloff(0)
-        inst.AnimState:PushAnimation("off")
+        inst.AnimState:PlayAnimation("idle")
     else
         inst.Light:SetRadius(inst.light_params.radius)
         inst.Light:SetIntensity(inst.light_params.intensity)
         inst.Light:SetFalloff(inst.light_params.falloff)
-        inst.AnimState:PushAnimation("idle")
+        inst.AnimState:PlayAnimation("idle_on")
     end
 
     if TheWorld.ismastersim then
@@ -32,23 +28,23 @@ end
 local function onhammered(inst, worker)
     local x, y, z = inst.Transform:GetWorldPosition()
     inst.components.lootdropper:DropLoot()
-    SpawnPrefab("bulb").Transform:SetPosition(x, y, z)
     inst:Remove()
 end
 
 local function onhit(inst, worker)
-    inst.AnimState:PlayAnimation("hit")
+    inst.AnimState:PlayAnimation("grow")
     if inst.components.energized.is_energized == true then
-        inst.AnimState:PushAnimation("idle")
+        inst.AnimState:PushAnimation("idle_on")
     else
-        inst.AnimState:PushAnimation("off")
+        inst.AnimState:PushAnimation("idle")
     end
 end
 
 local function onbuilt(inst)
-    inst.AnimState:PlayAnimation("place")
-    inst.AnimState:PushAnimation("off", false)
+    inst.AnimState:PlayAnimation("grow")
+    inst.AnimState:PushAnimation("idle", false)
     inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
+    inst._is_built = true
 end
 
 local function PowerOn(inst)
@@ -107,8 +103,8 @@ local function GetDebugString(inst)
 end
 
 local function getStatus(inst)
-    if inst:HasTag("isEnergized") then
-        return "Shiny"
+    if inst:HasTag("isEnergized") == true then
+        return "shiny"
     else
         return "It needs some volts i guess"
     end
@@ -135,9 +131,9 @@ local function fn()
     inst.Light:Enable(false)
     inst.Light:EnableClientModulation(true)
 
-    inst.AnimState:SetBank("bulb_plant_single")
-    inst.AnimState:SetBuild("bulb_plant_single")
-    inst.AnimState:PlayAnimation("off")
+    inst.AnimState:SetBank("electric_light")
+    inst.AnimState:SetBuild("electric_light")
+    inst.AnimState:PlayAnimation("idle")
 
     inst.MiniMapEntity:SetIcon("bulb_plant.png")
     inst.MiniMapEntity:SetPriority(0.1)
@@ -149,7 +145,7 @@ local function fn()
     }
 
     inst.UpdateLight = onUpdateLight
-    inst._isPowerOn = net_bool(inst.GUID, "electtric_light._isPowerOn", "isPowerOn_net")
+    inst._isPowerOn = net_bool(inst.GUID, "electric_light._isPowerOn", "isPowerOn_net")
 
     inst:AddTag("structure")
 
@@ -204,4 +200,4 @@ local function fn()
 end
 
 return Prefab("electric_light", fn, assets, prefabs),
-    MakePlacer("electric_light_placer", "electric_light", "electric_light", "preview")
+    MakePlacer("electric_light_placer", "electric_light_placement", "electric_light_placement", "idle")
